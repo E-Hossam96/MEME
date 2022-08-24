@@ -21,3 +21,4 @@ class Ingestor(IngestorInterface):
         for ingestor in cls.ingestors:
             if ingestor.can_ingest(path):
                 return ingestor.parse(path)
+        raise Exception('Unsupported File.')

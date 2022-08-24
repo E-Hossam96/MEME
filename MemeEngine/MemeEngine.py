@@ -17,21 +17,25 @@ class MemeEngine:
 
     def make_meme(self, img_path: str, text: str, author: str, width=500):
         """Generate the meme and stores it on a user specified location."""
-        with Image.open(img_path) as img:
-            ratio = width / float(img.size[0])
-            height = int(ratio * float(img.size[1]))
+        try:
+            with Image.open(img_path) as img:
+                ratio = width / float(img.size[0])
+                height = int(ratio * float(img.size[1]))
 
-            img = img.resize((width, height))
+                img = img.resize((width, height))
 
-            draw = ImageDraw.Draw(img)
+                draw = ImageDraw.Draw(img)
 
-            font = ImageFont.truetype("impact.ttf", 20)
+                font_path = os.path.normpath('./font/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf')
+                font = ImageFont.truetype(font_path, 20)
 
-            loc = (60, random.randint(30, img.size[0] - 50))
-            draw.text(loc, text, font=font, fill='yellow')
+                loc = (60, random.randint(30, img.size[0] - 50))
+                draw.text(loc, text, font=font, fill='yellow')
 
-            draw.text(loc, '\n- ' + author, font=font, fill='white')
+                draw.text(loc, '\n- ' + author, font=font, fill='white')
 
-            out_file = str(random.randint(1, 1000)) + '.png'
-            img.save(os.path.normpath(self.output_dir + '/' + out_file))
-            return os.path.normpath(self.output_dir + '/' + out_file)
+                out_file = str(random.randint(1, 1000)) + '.png'
+                img.save(os.path.normpath(self.output_dir + '/' + out_file))
+                return os.path.normpath(self.output_dir + '/' + out_file)
+        except:
+            raise Exception('Image Path is not valid.')
