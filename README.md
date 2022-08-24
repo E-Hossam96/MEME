@@ -14,7 +14,7 @@ The project driving executors are:
 To set up the project we need the following:
 1. Clone the repo on your local machine by running the command:
 ```
-git clone 
+git clone git@github.com:E-Hossam96/MEME.git
 ```
 
 2. Install the xpdf tool on your system by [downloading](https://www.xpdfreader.com/download.html) the proper version for it and adding the path for the proper bin file to your system environment varibles. This is to collect quotes from PDF files.
